@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from users.serializers import UserSerializer
 from users.views import UserViewSet
+from blog.views import ArticleViewSet
+
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'articles', ArticleViewSet)
 
 
 urlpatterns = [
