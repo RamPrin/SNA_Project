@@ -10,7 +10,6 @@ class ArticleSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class CreateArticleSerializer(serializers.HyperlinkedModelSerializer):
-
     class Meta:
         model = Article
         exclude = ('author',)

@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions
 
 from .models import Article
 from .serializers import ArticleSerializer, CreateArticleSerializer
-from .permissions import IsAuthorOrReadOnly
+from .permissions import IsAuthorOrAdminOrReadOnly
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -10,7 +10,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
-        IsAuthorOrReadOnly,
+        IsAuthorOrAdminOrReadOnly,
     )
 
     def get_serializer_class(self):
