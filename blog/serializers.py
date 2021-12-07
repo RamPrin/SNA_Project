@@ -6,4 +6,11 @@ from .models import Article
 class ArticleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Article
-        exclude = []
+        fields = '__all__'
+
+
+class CreateArticleSerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = Article
+        exclude = ('author',)
