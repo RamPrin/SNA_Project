@@ -28,9 +28,10 @@ router.register(r'articles', ArticleViewSet)
 
 
 urlpatterns = [
+    path('users/', include('users.urls', namespace='users')),
     path('admin/', admin.site.urls),
 
-    path('', include(router.urls)),
+    path('rest', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
     path('token/', token_obtain_pair, name='token_obtain_pair'),
