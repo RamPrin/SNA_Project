@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions
 
 from .models import Article
 from .serializers import ArticleSerializer, CreateArticleSerializer
-from .permissions import IsAuthorOrAdminOrReadOnly
+from .permissions import IsAuthorOrReadOnly
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
@@ -10,7 +10,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
-        IsAuthorOrAdminOrReadOnly,
+        IsAuthorOrReadOnly,
     )
 
     def get_serializer_class(self):
@@ -34,7 +34,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
                 kwargs = {filter_by: param_value}
                 queryset = queryset.filter(**kwargs)
 
-        return queryset
+        return queryset.order_by('-pub_date')
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)

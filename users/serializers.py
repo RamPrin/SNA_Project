@@ -8,8 +8,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ('url', 'username', 'date_joined', 'is_superuser', 'is_staff', 'password')
-        read_only_fields = ('is_superuser', 'is_staff')
+        fields = ('url', 'username', 'password', 'date_joined', 'is_superuser', 'is_staff')
+        read_only_fields = ('is_superuser', 'is_staff', 'date_joined')
 
     def create(self, validated_data):
         user = CustomUser.objects.create_user(
