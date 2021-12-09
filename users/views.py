@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from rest_framework import viewsets
 
-from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .forms import CustomUserRegisterForm, CustomUserAuthenticationForm
 from .models import CustomUser
 from .serializers import UserSerializer
 
@@ -16,7 +16,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class SignUpView(generic.CreateView):
-    form_class = CustomUserCreationForm
+    form_class = CustomUserRegisterForm
     template_name = 'users/signup.html'
 
     def get_success_url(self):
@@ -35,7 +35,7 @@ class SignUpView(generic.CreateView):
 
 
 class CustomLoginView(LoginView):
-    form_class = CustomAuthenticationForm
+    form_class = CustomUserAuthenticationForm
     template_name = 'users/login.html'
     redirect_authenticated_user = True
 
