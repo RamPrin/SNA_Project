@@ -11,6 +11,7 @@
 <body>
 {% if request.user.is_authenticated %}
     Profile page of {{ request.user.username }}
+    <li>{% include 'users/snippets/logout_href.html' %}</li>
 {% else %}
     <ul>
         <li>You're not authorized</li>
