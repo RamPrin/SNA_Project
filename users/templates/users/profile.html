@@ -1,14 +1,7 @@
-{% load static %}
+{% extends 'users/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
-</head>
-<body>
+{% block content %}
+
 {% if request.user.is_authenticated %}
     Profile page of {{ request.user.username }}
     <li>{% include 'users/snippets/logout_href.html' %}</li>
@@ -19,5 +12,5 @@
         <li>{% include 'users/snippets/login_href.html' %}</li>
     </ul>
 {% endif %}
-</body>
-</html>
+
+{% endblock %}

@@ -1,13 +1,20 @@
-{% csrf_token %}
-{% for field in form %}
-    <div class="form-group">
-        <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
-        {{ field }}
-        {% for error in field.errors %}
-            <div class="field-error">{{error}}</div>
+<div class="auth-form centered-container">
+    <h3 class="form-title">{{ form.form_title }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <div class="field-error">{{error}}</div>
+                {% endfor %}
+            </div>
         {% endfor %}
-    </div>
-{% endfor %}
-{% for error in form.non_field_errors %}
-    <div class="form-error">{{error}}</div>
-{% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="form-error">{{error}}</div>
+        {% endfor %}
+
+        <div class="form-group"><input class="btn btn-primary btn-block mt-4" type="submit" value="{{ form.submit_button_text }}"></div>
+    </form>
+</div>
