@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from rest_framework import viewsets
 
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from .models import CustomUser
 from .serializers import UserSerializer
 
@@ -35,6 +35,7 @@ class SignUpView(generic.CreateView):
 
 
 class CustomLoginView(LoginView):
+    form_class = CustomAuthenticationForm
     template_name = 'users/login.html'
     redirect_authenticated_user = True
 

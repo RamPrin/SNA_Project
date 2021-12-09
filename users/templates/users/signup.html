@@ -9,10 +9,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'users/style.css' %}">
 </head>
 <body>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn btn-success" type="submit" value="Submit">
-    </form>
+    <div class="auth-form centered-container">
+        <h3 class="form-title">Sign Up</h3>
+        <form method="post">
+            {% include 'users/snippets/user_form.html' %}
+            <div class="form-group"><input class="btn btn-primary btn-block mt-4" type="submit" value="Register Account"></div>
+        </form>
+    </div>
+
+    <div class="centered-container mt-4">
+        Already have an account?
+        {% include 'users/snippets/login_href.html' %}
+    </div>
 </body>
 </html>
