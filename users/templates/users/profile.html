@@ -1,5 +1,9 @@
 {% extends 'users/base.html' %}
 
+{% block title %}
+Profile
+{% endblock %}
+
 {% block content %}
     {% if user.is_authenticated %}
         Profile page of {{ user.username }}
