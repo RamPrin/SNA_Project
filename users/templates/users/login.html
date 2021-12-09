@@ -1,12 +1,10 @@
 {% extends 'users/base.html' %}
 
 {% block content %}
+    {% include 'users/snippets/user_form.html' %}
 
-{% include 'users/snippets/user_form.html' %}
-
-<div class="centered-container mt-4" style="text-align: center">
-    Don't have an account?
-    {% include 'users/snippets/signup_href.html' %}
-</div>
-
+    <div class="centered-container mt-4" style="text-align: center">
+        Don't have an account?
+        {% include 'users/snippets/signup_href.html' %}
+    </div>
 {% endblock %}

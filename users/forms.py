@@ -31,7 +31,7 @@ class DoublePasswordRegisterForm(UserCreationForm, TemplateFormMixin):
     with one additional confirming password field.
     """
 
-    form_title = 'Sign Up'
+    form_title = 'Register'
     submit_button_text = 'Register Account'
 
     class Meta(UserCreationForm.Meta):
@@ -44,7 +44,7 @@ class SinglePasswordRegisterForm(forms.ModelForm, TemplateFormMixin):
     A form that creates a user, from the given username and password.
     """
 
-    form_title = 'Sign Up'
+    form_title = 'Register'
     submit_button_text = 'Register Account'
 
     username = forms.CharField(

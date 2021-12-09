@@ -3,7 +3,7 @@
     margin-left: auto;
     margin-right: auto;
 
-    padding: 15px 30px;
+    padding: 10px 30px;
 
     background-color: hsl(210, 28.6%, 97.3%);
     border: 1px solid #ced4da;
@@ -17,7 +17,7 @@
 
 .form-title {
     text-align: center;
-    margin-top: 15px;
+    margin: 15px auto;
 }
 
 label {

@@ -1,16 +1,14 @@
 {% extends 'users/base.html' %}
 
 {% block content %}
-
-{% if request.user.is_authenticated %}
-    Profile page of {{ request.user.username }}
-    <li>{% include 'users/snippets/logout_href.html' %}</li>
-{% else %}
-    <ul>
-        <li>You're not authorized</li>
-        <li>{% include 'users/snippets/signup_href.html' %}</li>
-        <li>{% include 'users/snippets/login_href.html' %}</li>
-    </ul>
-{% endif %}
-
+    {% if request.user.is_authenticated %}
+        Profile page of {{ request.user.username }}
+        <li>{% include 'users/snippets/logout_href.html' %}</li>
+    {% else %}
+        <ul>
+            <li>You're not authorized</li>
+            <li>{% include 'users/snippets/signup_href.html' %}</li>
+            <li>{% include 'users/snippets/login_href.html' %}</li>
+        </ul>
+    {% endif %}
 {% endblock %}
