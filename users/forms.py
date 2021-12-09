@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm, UsernameField
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
 from .models import CustomUser
 
@@ -20,7 +20,11 @@ def set_widgets_class(form_class):
 
 
 @set_widgets_class
-class CustomUserRegisterForm(UserCreationForm):
+class DoublePasswordRegisterForm(UserCreationForm):
+    """
+    A form that consists of username and password fields
+    with one additional confirming password field.
+    """
     class Meta(UserCreationForm.Meta):
         model = CustomUser
 
@@ -28,8 +32,7 @@ class CustomUserRegisterForm(UserCreationForm):
 @set_widgets_class
 class SinglePasswordRegisterForm(forms.ModelForm):
     """
-    A form that creates a user, with no privileges, from the given username and
-    password.
+    A form that creates a user, from the given username and password.
     """
 
     username = forms.CharField(
@@ -61,7 +64,7 @@ class SinglePasswordRegisterForm(forms.ModelForm):
 
 
 @set_widgets_class
-class CustomUserAuthenticationForm(AuthenticationForm):
+class CustomAuthenticationForm(AuthenticationForm):
     pass
 
 

@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.views import generic
 from rest_framework import viewsets
 
-from .forms import CustomUserRegisterForm, CustomUserAuthenticationForm, SinglePasswordRegisterForm
+from .forms import DoublePasswordRegisterForm, CustomAuthenticationForm, SinglePasswordRegisterForm
 from .models import CustomUser
 from .serializers import UserSerializer
 
@@ -16,7 +16,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class SignUpView(generic.CreateView):
-    form_class = CustomUserRegisterForm
+    form_class = DoublePasswordRegisterForm
     # form_class = SinglePasswordRegisterForm
     template_name = 'users/signup.html'
 
@@ -38,7 +38,7 @@ class SignUpView(generic.CreateView):
 
 
 class CustomLoginView(LoginView):
-    form_class = CustomUserAuthenticationForm
+    form_class = CustomAuthenticationForm
     template_name = 'users/login.html'
     redirect_authenticated_user = True
 

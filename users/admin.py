@@ -2,12 +2,12 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .forms import CustomUserChangeForm, CustomUserRegisterForm
+from .forms import CustomUserChangeForm, DoublePasswordRegisterForm
 from .models import CustomUser
 
 
 class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserRegisterForm
+    add_form = DoublePasswordRegisterForm
     form = CustomUserChangeForm
     model = CustomUser
     list_display = ('username', 'is_staff')
