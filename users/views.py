@@ -15,9 +15,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class RegisterView(generic.CreateView):
+class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
-    template_name = 'users/register.html'
+    template_name = 'users/signup.html'
 
     def get_success_url(self):
         return reverse('users:profile')
