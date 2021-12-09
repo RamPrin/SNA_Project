@@ -1,0 +1,5 @@
+{% if ALLOW_DEMO_USER %}
+    <div class="centered-container mt-4" style="text-align: center">
+        <a href="{% url 'users:login'%}?demo=1">Login with demo account</a>
+    </div>
+{% endif %}

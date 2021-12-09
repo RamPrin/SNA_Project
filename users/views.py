@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from rest_framework import viewsets
 
+from core import settings
 from .forms import DoublePasswordRegisterForm, CustomAuthenticationForm, SinglePasswordRegisterForm
 from .models import CustomUser
 from .serializers import UserSerializer
@@ -56,6 +57,20 @@ class SignUpView(generic.CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
+def login_as_demo_user(request):
+    username = 'demo_user'
+    password = '123'
+
+    user, _ = CustomUser.objects.get_or_create(username=username, password=password)
+
+    if user:
+        authenticate(username=username, password=password)
+        login(request, user)
+        return True
+
+    return False
+
+
 class CustomLoginView(LoginView):
     form_class = CustomAuthenticationForm
     template_name = 'users/login.html'
@@ -63,6 +78,13 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse('users:profile')
+
+    def get(self, request, *args, **kwargs):
+        if request.GET.get('demo') and settings.ALLOW_DEMO_USER and not request.user.is_authenticated:
+            if login_as_demo_user(request):
+                return HttpResponseRedirect(self.get_success_url())
+
+        return super().get(request, *args, **kwargs)
 
 
 class CustomLogoutView(LogoutView):

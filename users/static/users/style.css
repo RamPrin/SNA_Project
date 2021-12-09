@@ -34,6 +34,11 @@ div.message-text {
 
 input[type=text]{
     font-family: monospace;
+    color: black;
+}
+
+input[type=password]{
+    color: black;
 }
 
 textarea {

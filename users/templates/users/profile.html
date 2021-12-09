@@ -1,8 +1,8 @@
 {% extends 'users/base.html' %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-        Profile page of {{ request.user.username }}
+    {% if user.is_authenticated %}
+        Profile page of {{ user.username }}
         <li>{% include 'users/snippets/logout_href.html' %}</li>
     {% else %}
         <ul>

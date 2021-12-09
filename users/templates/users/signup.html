@@ -2,12 +2,8 @@
 
 {% block content %}
 
-{% include 'users/snippets/user_form.html' %}
-
-    <div class="centered-container mt-4" style="text-align: center">
-        Already have an account?
-        {% include 'users/snippets/login_href.html' %}
-    </div>
+    {% include 'users/snippets/user_form.html' %}
+    {% include 'users/snippets/demo_user_href.html' %}
 
     <div class="centered-container mt-4" style="text-align: center">
         Already have an account?
