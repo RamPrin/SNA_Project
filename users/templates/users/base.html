@@ -22,7 +22,7 @@
         <div class="nav-item"><a class="nav-link" href="{% url 'users:profile' %}">{{ user.username }}</a></div>
         <a href="{% url 'users:logout' %}?next={{ request.path }}" ><button class="btn btn-outline-danger" type="submit">Log out</button></a>
     {% else %}
-        <a href="{% url 'users:signup' %}?next={{ request.path }}"><button class="btn btn-outline-success">Sign Up</button></a>
+        <a class="mr-2" href="{% url 'users:signup' %}?next={{ request.path }}"><button class="btn btn-outline-success">Sign Up</button></a>
         <a href="{% url 'users:login' %}?next={{ request.path }}"><button class="btn btn-outline-info">Sign In</button></a>
     {% endif %}
 </nav>

@@ -1,1 +1,1 @@
-<a href="{% url 'users:login' %}">Sign In</a>
+<a href="{% url 'users:login' %}?next={{ request.GET.next }}">Sign In</a>

@@ -106,6 +106,7 @@ class IndexView(generic.TemplateView):
 
 
 class ProfileView(LoginRequiredMixin, generic.TemplateView):
-    login_url = '/users/login'
+    def get_login_url(self):
+        return reverse('users:login')
 
     template_name = 'users/profile.html'
