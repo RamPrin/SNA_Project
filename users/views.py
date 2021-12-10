@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -92,5 +93,11 @@ class CustomLogoutView(LogoutView):
         return reverse('users:profile')
 
 
-class ProfileView(generic.TemplateView):
+class IndexView(generic.TemplateView):
+    template_name = 'users/index.html'
+
+
+class ProfileView(LoginRequiredMixin, generic.TemplateView):
+    login_url = '/users/login'
+
     template_name = 'users/profile.html'
