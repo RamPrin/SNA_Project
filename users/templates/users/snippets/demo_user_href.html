@@ -1,5 +1,5 @@
 {% if IS_DEMONSTRATION_MODE %}
     <div class="centered-container mt-4" style="text-align: center">
-        <a href="{% url 'users:login'%}?next={{ request.path }}&demo=1">Login with demo account</a>
+        <a href="{% url 'users:login'%}?next={{ request.GET.next }}&demo=1">Login with demo account</a>
     </div>
 {% endif %}
