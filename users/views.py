@@ -80,7 +80,7 @@ class CustomLoginView(LoginView):
         return reverse('users:profile')
 
     def get(self, request, *args, **kwargs):
-        if request.GET.get('demo') and settings.ALLOW_DEMO_USER:
+        if request.GET.get('demo') and settings.IS_DEMONSTRATION_MODE:
             if login_as_demo_user(request):
                 return HttpResponseRedirect(self.get_success_url())
 
