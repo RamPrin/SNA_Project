@@ -21,6 +21,14 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
+def custom_get_success_url(request):
+    next_param = request.GET.get('next', None)
+    if next_param:
+        return next_param
+
+    return reverse('users:profile')
+
+
 class SignUpView(generic.CreateView):
     form_class = DoublePasswordRegisterForm
     # form_class = SinglePasswordRegisterForm
@@ -42,7 +50,7 @@ class SignUpView(generic.CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('users:profile')
+        return custom_get_success_url(self.request)
 
     def form_valid(self, form):
         form.save()
@@ -78,7 +86,7 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
-        return reverse('users:profile')
+        return custom_get_success_url(self.request)
 
     def get(self, request, *args, **kwargs):
         if request.GET.get('demo') and settings.IS_DEMONSTRATION_MODE:
@@ -90,7 +98,7 @@ class CustomLoginView(LoginView):
 
 class CustomLogoutView(LogoutView):
     def get_next_page(self):
-        return reverse('users:profile')
+        return custom_get_success_url(self.request)
 
 
 class IndexView(generic.TemplateView):

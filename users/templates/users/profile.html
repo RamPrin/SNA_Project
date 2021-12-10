@@ -5,14 +5,11 @@ Profile
 {% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        Profile page of {{ user.username }}
-        <li>{% include 'users/snippets/logout_href.html' %}</li>
-    {% else %}
-        <ul>
-            <li>You're not authorized</li>
-            <li>{% include 'users/snippets/signup_href.html' %}</li>
-            <li>{% include 'users/snippets/login_href.html' %}</li>
-        </ul>
-    {% endif %}
+    <div class="my-content">
+        {% if user.is_authenticated %}
+            <h1>Profile page of {{ user.username }}</h1>
+        {% endif %}
+    </div>
+
+    {% include 'users/snippets/footer.html' %}
 {% endblock %}
