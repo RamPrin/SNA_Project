@@ -1,0 +1,7 @@
+<li class="nav-item
+    {% if current_view_name == view_name %}
+        active
+    {% endif %}
+">
+    <a class="nav-link" href="{% url view_name %}">{{ text }}</a>
+</li>
