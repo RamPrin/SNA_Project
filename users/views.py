@@ -99,14 +99,3 @@ class CustomLoginView(LoginView):
 class CustomLogoutView(LogoutView):
     def get_next_page(self):
         return custom_get_success_url(self.request)
-
-
-class IndexView(generic.TemplateView):
-    template_name = 'users/index.html'
-
-
-class ProfileView(LoginRequiredMixin, generic.TemplateView):
-    def get_login_url(self):
-        return reverse('users:login')
-
-    template_name = 'users/profile.html'

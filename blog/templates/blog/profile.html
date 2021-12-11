@@ -1,15 +1,13 @@
-{% extends 'users/base.html' %}
+{% extends 'blog/base.html' %}
 
 {% block title %}
 Profile
 {% endblock %}
 
 {% block content %}
-    <div class="my-content">
+    <div class="profile-container">
         {% if user.is_authenticated %}
             <h1>Profile page of {{ user.username }}</h1>
         {% endif %}
     </div>
-
-    {% include 'users/snippets/footer.html' %}
 {% endblock %}

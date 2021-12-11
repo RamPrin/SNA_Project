@@ -28,6 +28,7 @@ router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
+    path('blog/', include('blog.urls', namespace='blog')),
     path('admin/', admin.site.urls),
 
     path('rest/', include(router.urls)),
