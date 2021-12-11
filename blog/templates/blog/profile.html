@@ -7,5 +7,9 @@ Profile
 {% block content %}
     <div class="container-main profile-container">
         <h1>Profile page of {{ profile_user.username }}</h1>
+
+        {% for post in profile_user.post_set.get_queryset %}
+            {% include 'blog/snippets/post_card.html' %}
+        {% endfor %}
     </div>
 {% endblock %}

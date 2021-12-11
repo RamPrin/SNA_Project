@@ -33,9 +33,14 @@ class ProfileView(generic.DetailView):
         return super().get_object(queryset)
 
 
-class FeedView(generic.ListView):
+class PostListView(generic.ListView):
     model = Post
     template_name = 'blog/feed.html'
 
     def get_queryset(self):
         return Post.objects.all().order_by('-pub_date')
+
+
+class PostDetailView(generic.DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
