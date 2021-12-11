@@ -24,3 +24,17 @@ def login_as_demo_user(request):
         return True
 
     return False
+
+
+def set_widgets_class(form_class):
+    """
+    set "class" to "form-control" in attrs of widget of every form field
+    """
+
+    class MyFormClass(form_class):
+        def __init__(self, *args, **kwargs):
+            super().__init__(*args, **kwargs)
+            for name, field in self.fields.items():
+                field.widget.attrs['class'] = 'form-control'
+
+    return MyFormClass

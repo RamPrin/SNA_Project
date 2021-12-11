@@ -10,8 +10,8 @@
         {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:feed' text='Feed' %}
     </ul>
 
-    {% if user.is_authenticated %}
-        <div class="nav-item"><a class="nav-link" href="{% url 'blog:me' %}">{{ user.username }}</a></div>
+    {% if request.user.is_authenticated %}
+        <div class="nav-item"><a class="nav-link" href="{% url 'blog:me' %}">{{ request.user.username }}</a></div>
         <a href="{% url 'users:logout' %}?next={{ request.path }}" ><button class="btn btn-outline-danger" type="submit">Log out</button></a>
     {% else %}
         <a class="mr-2" href="{% url 'users:signup' %}?next={{ request.path }}"><button class="btn btn-outline-success">Sign Up</button></a>

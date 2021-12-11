@@ -3,25 +3,12 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from django.utils.translation import gettext_lazy as _
 
 from .models import CustomUser
+from .utils import set_widgets_class
 
 
 class TemplateFormMixin:
     form_title = 'Title'
-    submit_button_text = 'Submit'
-
-
-def set_widgets_class(form_class):
-    """
-    set "class" to "form-control" in attrs of widget of every form field
-    """
-
-    class MyFormClass(form_class):
-        def __init__(self, *args, **kwargs):
-            super().__init__(*args, **kwargs)
-            for name, field in self.fields.items():
-                field.widget.attrs['class'] = 'form-control'
-
-    return MyFormClass
+    submit_text = 'Submit'
 
 
 @set_widgets_class
@@ -32,7 +19,7 @@ class DoublePasswordRegisterForm(UserCreationForm, TemplateFormMixin):
     """
 
     form_title = 'Register'
-    submit_button_text = 'Register Account'
+    submit_text = 'Register Account'
 
     class Meta(UserCreationForm.Meta):
         model = CustomUser
@@ -45,7 +32,7 @@ class SinglePasswordRegisterForm(forms.ModelForm, TemplateFormMixin):
     """
 
     form_title = 'Register'
-    submit_button_text = 'Register Account'
+    submit_text = 'Register Account'
 
     username = forms.CharField(
         widget=forms.TextInput(),
@@ -78,7 +65,7 @@ class SinglePasswordRegisterForm(forms.ModelForm, TemplateFormMixin):
 @set_widgets_class
 class CustomAuthenticationForm(AuthenticationForm):
     form_title = 'Sign In'
-    submit_button_text = 'Log in'
+    submit_text = 'Log in'
 
 
 class CustomUserChangeForm(UserChangeForm):

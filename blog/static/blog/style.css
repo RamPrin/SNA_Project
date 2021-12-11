@@ -1,24 +1,39 @@
-html, body {
-    height: 100%;
+.form-container {
+    width: 400px;
 
-      display: flex;
-    flex-direction: column;
+    padding: 10px 30px;
+
+    background-color: #f6f8fa;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+
+    box-sizing: border-box;
 }
 
-body > * {
-  flex-shrink: 0;
+#post-form {
+    margin: 30px 0;
+}
+
+input[type=text]{
+    font-family: monospace;
+    color: black;
+}
+
+input[type=password]{
+    color: black;
+}
+
+textarea {
+    max-width: 100%;
+    max-height: 100px;
+    font-family: monospace;
 }
 
 .container-main {
     margin: 0 auto;
-    width: 70%;
+    width: 50%;
 
     flex-grow: 1;
-}
-
-.profile-container {
-    border: 2px solid #ced4da;
-    border-radius: 6px;
 }
 
 h3, h2, h1 {

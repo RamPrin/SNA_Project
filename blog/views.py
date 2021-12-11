@@ -1,10 +1,15 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views import generic
+from django.views import generic, View
+from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.edit import ModelFormMixin
+from django.views.generic.list import MultipleObjectMixin
 
-from blog.models import Post
+from .models import Post
+from .forms import PostCreationForm
 
 
 @login_required(login_url=reverse_lazy('users:login'))
@@ -13,24 +18,45 @@ def get_logged_profile(request):
     return HttpResponseRedirect(a)
 
 
-class NewPostView(generic.CreateView):
-    pass
-
-
 class IndexView(generic.TemplateView):
     template_name = 'blog/index.html'
 
 
-class ProfileView(generic.DetailView):
+class ProfileView(ModelFormMixin, View):
+    form_class = PostCreationForm
     model = get_user_model()
-    template_name = 'blog/profile.html'
-    context_object_name = 'profile_user'
 
-    def get_object(self, queryset=None):
-        if not any(i in self.kwargs for i in ['id', 'pk']):
-            return self.model.objects.filter(**self.kwargs).first()
+    def __init__(self):
+        self.request = None
+        super().__init__()
 
-        return super().get_object(queryset)
+    def get(self, request, *args, **kwargs):
+        profile_user = self.model.objects.filter(**kwargs).first()
+
+        post_list = Post.objects.filter(author=profile_user).order_by('-pub_date')
+        context = {
+            'form': self.form_class,
+            'profile_user': profile_user,
+            'post_list': post_list,
+        }
+        return render(request, 'blog/profile.html', context=context)
+
+    def post(self, request, *args, **kwargs):
+        self.request = request
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        request_user = self.request.user
+        form.save(user=request_user)
+
+        return HttpResponseRedirect(self.get_success_url())
+
+    def get_success_url(self):
+        return self.request.path
 
 
 class PostListView(generic.ListView):
