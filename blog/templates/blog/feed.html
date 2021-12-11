@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}
+Feed
+{% endblock %}
+
+{% block content %}
+    <div class="container-main">
+        <h1>Posts Feed</h1>
+            {% for post in post_list %}
+                <div class="card bg-light mb-3" style="max-width: 80%; margin: 0 auto">
+                    <div class="card-header">
+                        <a href="{% url 'blog:profile' post.author.username %}">
+                            {{ post.author }}
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">{{ post.text }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+{% endblock %}
