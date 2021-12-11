@@ -1,8 +1,6 @@
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.decorators.cache import never_cache
@@ -11,22 +9,15 @@ from django.views.decorators.debug import sensitive_post_parameters
 from rest_framework import viewsets
 
 from core import settings
-from .forms import DoublePasswordRegisterForm, CustomAuthenticationForm, SinglePasswordRegisterForm
+from .forms import DoublePasswordRegisterForm, CustomAuthenticationForm
 from .models import CustomUser
 from .serializers import UserSerializer
+from .utils import custom_get_success_url, login_as_demo_user
 
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
-
-
-def custom_get_success_url(request):
-    next_param = request.GET.get('next', None)
-    if next_param:
-        return next_param
-
-    return reverse('users:profile')
 
 
 class SignUpView(generic.CreateView):
@@ -64,20 +55,6 @@ class SignUpView(generic.CreateView):
         login(self.request, user)
 
         return HttpResponseRedirect(self.get_success_url())
-
-
-def login_as_demo_user(request):
-    username = 'demo_user'
-    password = '123'
-
-    user, _ = CustomUser.objects.get_or_create(username=username, password=password)
-
-    if user:
-        authenticate(username=username, password=password)
-        login(request, user)
-        return True
-
-    return False
 
 
 class CustomLoginView(LoginView):
