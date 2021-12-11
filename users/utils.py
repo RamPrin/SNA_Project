@@ -9,7 +9,7 @@ def custom_get_success_url(request):
     if next_param:
         return next_param
 
-    return reverse('users:profile')
+    return reverse('blog:me')
 
 
 def login_as_demo_user(request):

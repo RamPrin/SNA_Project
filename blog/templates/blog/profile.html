@@ -6,8 +6,6 @@ Profile
 
 {% block content %}
     <div class="profile-container">
-        {% if user.is_authenticated %}
-            <h1>Profile page of {{ user.username }}</h1>
-        {% endif %}
+        <h1>Profile page of {{ profile_user.username }}</h1>
     </div>
 {% endblock %}
