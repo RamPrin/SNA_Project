@@ -9,14 +9,16 @@ body > * {
   flex-shrink: 0;
 }
 
-.profile-container {
+.container-main {
     margin: 0 auto;
     width: 70%;
-    /*height: 100%;*/
-    border: 2px solid #ced4da;
-    border-radius: 6px;
 
     flex-grow: 1;
+}
+
+.profile-container {
+    border: 2px solid #ced4da;
+    border-radius: 6px;
 }
 
 h3, h2, h1 {
