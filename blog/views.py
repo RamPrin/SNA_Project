@@ -1,15 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic, View
-from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ModelFormMixin
-from django.views.generic.list import MultipleObjectMixin
 
-from .models import Post
 from .forms import PostCreationForm
+from .models import Post
 
 
 @login_required(login_url=reverse_lazy('users:login'))
@@ -32,6 +30,9 @@ class ProfileView(ModelFormMixin, View):
 
     def get(self, request, *args, **kwargs):
         profile_user = self.model.objects.filter(**kwargs).first()
+
+        if profile_user is None:
+            raise Http404
 
         post_list = Post.objects.filter(author=profile_user).order_by('-pub_date')
         context = {

@@ -6,7 +6,7 @@ Feed
 
 {% block content %}
     <div class="container-main">
-        <h1>Posts Feed</h1>
+        <h1 class="mb-5">Posts Feed</h1>
         {% for post in post_list %}
             {% include 'blog/snippets/post_card.html' %}
         {% endfor %}

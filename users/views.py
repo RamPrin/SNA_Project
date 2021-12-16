@@ -47,9 +47,11 @@ class SignUpView(generic.CreateView):
         form.save()
 
         username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password', None)
-        if not password:
+
+        if self.form_class == DoublePasswordRegisterForm:
             password = form.cleaned_data.get('password1')
+        else:
+            password = form.cleaned_data.get('password')
 
         user = authenticate(username=username, password=password)
         login(self.request, user)
