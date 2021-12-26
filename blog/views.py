@@ -16,9 +16,11 @@ def get_logged_profile(request):
     return HttpResponseRedirect(a)
 
 
-class IndexView(generic.TemplateView):
-    template_name = 'blog/index.html'
+# class IndexView(generic.TemplateView):
+    # template_name = 'blog/index.html'
 
+def index_view(request):
+    return HttpResponseRedirect(reverse('blog:feed'))
 
 class ProfileView(ModelFormMixin, View):
     form_class = PostCreationForm

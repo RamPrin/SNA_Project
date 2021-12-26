@@ -5,9 +5,9 @@
 
 
     <ul class="navbar-nav mr-auto">
-        {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:index' text='Home' %}
-        {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:me' text='My Profile' %}
+{#        {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:index' text='Home' %}#}
         {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:feed' text='Feed' %}
+        {% navbar_item_tag current_view_name=request.resolver_match.view_name view_name='blog:me' text='My Profile' %}
     </ul>
 
     {% if request.user.is_authenticated %}
