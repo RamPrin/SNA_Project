@@ -16,13 +16,16 @@ def get_logged_profile(request):
     return HttpResponseRedirect(a)
 
 
-# class IndexView(generic.TemplateView):
-    # template_name = 'blog/index.html'
-
 def index_view(request):
     return HttpResponseRedirect(reverse('blog:feed'))
 
+
 class ProfileView(ModelFormMixin, View):
+    """
+    View which implements both get & post functionalities for different Models:
+    GET: Returns list of Post corresponding to current user
+    POST: Create new Post by PostCreationForm form
+    """
     form_class = PostCreationForm
     model = get_user_model()
 
