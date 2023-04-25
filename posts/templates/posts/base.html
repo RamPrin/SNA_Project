@@ -1,0 +1,23 @@
+{% load static %}
+{#{% load custom_tags %}#}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'posts/style.css' %}">
+</head>
+<body>
+
+{#{% include 'blog/snippets/navbar.html' %}#}
+
+{% block content %}
+
+{% endblock %}
+
+{#{% include 'blog/snippets/footer.html' %}#}
+
+</body>
+</html>

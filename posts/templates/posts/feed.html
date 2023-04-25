@@ -1,0 +1,14 @@
+{% extends 'posts/base.html' %}
+
+{% block title %}
+Posts Feed!
+{% endblock %}
+
+{% block content %}
+    <div class="container-main">
+        <h1 class="mb-5">Posts Feed</h1>
+        {% for post in post_list %}
+            {% include 'posts/post_card.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}
