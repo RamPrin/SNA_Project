@@ -7,3 +7,7 @@ articles-old
 .envrc
 .direnv
 default.nix
+
+.env.dev 
+.env
+pg_data
