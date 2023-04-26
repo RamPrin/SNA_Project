@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('articles/', include('articles.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
 from rest_framework import routers
 
+from blog.views import PostListView
 from users.views import UserViewSet
 
 from rest_framework_simplejwt.views import token_obtain_pair, token_refresh, token_verify
@@ -26,7 +28,10 @@ router.register(r'users', UserViewSet)
 # router.register(r'articles', ArticleViewSet)
 
 
+
 urlpatterns = [
+    # path('', lambda req: redirect('blog/')),
+    path('', PostListView.as_view(), name='feed'),
     path('users/', include('users.urls', namespace='users')),
     path('blog/', include('blog.urls', namespace='blog')),
     path('admin/', admin.site.urls),
