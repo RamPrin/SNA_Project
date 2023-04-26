@@ -8,3 +8,6 @@ articles-old
 .direnv
 default.nix
 venv/
+.env.dev 
+.env
+pg_data
