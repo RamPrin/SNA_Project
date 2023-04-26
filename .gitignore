@@ -7,3 +7,4 @@ articles-old
 .envrc
 .direnv
 default.nix
+venv/
