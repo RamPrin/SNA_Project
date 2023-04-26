@@ -2,3 +2,8 @@
 *.sqlite3
 __pycache__
 articles-old
+
+.DS_STORE
+.envrc
+.direnv
+default.nix
