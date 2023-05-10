@@ -21,12 +21,12 @@ services:
     env_file:
       - ./.env
 
-  db:
-    image: postgres:15-alpine 
-    volumes:
-      - ./pg_data:/var/lib/postgresql/data 
-    profiles:
-      - dev
-    env_file:
-      - ./.env
+#  db:
+#    image: postgres:15-alpine 
+#    volumes:
+#      - ./pg_data:/var/lib/postgresql/data 
+#    profiles:
+#      - dev
+#    env_file:
+#      - ./.env
 
