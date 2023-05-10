@@ -9,7 +9,7 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - ./.env
+      - ./app/.env
     depends_on:
       - migration
 
@@ -19,7 +19,7 @@ services:
     volumes:
       - ./app:/usr/src/app/
     env_file:
-      - ./.env
+      - ./app/.env
 
 #  db:
 #    image: postgres:15-alpine 
@@ -28,5 +28,5 @@ services:
 #    profiles:
 #      - dev
 #    env_file:
-#      - ./.env
+#      - ./.env.db
 

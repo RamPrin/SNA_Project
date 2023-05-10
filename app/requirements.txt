@@ -3,3 +3,4 @@ djangorestframework
 djangorestframework-simplejwt
 setuptools
 psycopg2-binary
+gunicorn
