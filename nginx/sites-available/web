@@ -1,6 +1,10 @@
 server {
-    listen       80;
-    server_name  localhost;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    include snippets/self-signed.conf;
+    include snippets/ssl-params.conf;
+
+    server_name  localhost snaproject.us.to www.snaproject.us.to;
 
     location / {
         root   html;
@@ -16,4 +20,22 @@ server {
     location = /50x.html {
         root   html;
     }
+
+    ssl_certificate /etc/letsencrypt/live/snaproject.us.to/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/snaproject.us.to/privkey.pem; # managed by Certbot
+}
+
+server {
+    if ($host = snaproject.us.to) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    listen [::]:80;
+    server_name snaproject.us.to www.snaproject.us.to;
+
+    return 302 https://$server_name$request_uri;
+
+
 }

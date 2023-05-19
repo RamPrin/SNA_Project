@@ -3,8 +3,7 @@ version: '3.8'
 services:
   web:
     build: ./app
-#    command: python3 manage.py runserver 0.0.0.0:8000
-    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 --log-level debug
     volumes:
       - ./app:/usr/src/app/
     ports:
@@ -16,18 +15,9 @@ services:
 
   migration:
     build: ./app
-    command: python3 manage.py migrate 
+    command: python3 manage.py migrate
     volumes:
       - ./app:/usr/src/app/
     env_file:
       - ./.env
-
-#  db:
-#    image: postgres:15-alpine 
-#    volumes:
-#      - ./pg_data:/var/lib/postgresql/data 
-#    profiles:
-#      - dev
-#    env_file:
-#      - ./.env.db
 
